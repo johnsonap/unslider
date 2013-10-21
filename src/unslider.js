@@ -23,7 +23,8 @@
 			complete: f,    // invoke after animation (function with argument)
 			items: '>ul',   // slides container selector
 			item: '>li',    // slidable items selector
-			easing: 'swing' // easing function to use for animation
+			easing: 'swing',// easing function to use for animation
+			setwidth: !f
 		};
 
 		_.init = function(el, o) {
@@ -54,7 +55,11 @@
 			_.i = 0;
 
 			//  Set the main element
-			el.css({width: _.max[0], height: li.first().outerHeight(), overflow: 'hidden'});
+			w = ''
+			if(o.setwidth){
+				w = _.max[0]
+			}
+			el.css({width: w, height: li.first().outerHeight(), overflow: 'hidden'});
 
 			//  Set the relative widths
 			ul.css({position: 'relative', left: 0, width: (len * 100) + '%'});
